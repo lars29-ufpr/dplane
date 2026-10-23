@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dplane | Sistemas Dinâmicos Discretos</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <header class="top-bar">
+        <h1>dplane <span class="subtitle">Módulo 1D</span></h1>
+        <div class="diagnostic-badge">
+            Expoente de Lyapunov: <span id="lyapunov-value">Calculando...</span>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <!-- Painel de Controles Lateral -->
+        <aside class="control-panel">
+            <div class="control-group">
+                <label for="model-select">Modelo Dinâmico</label>
+                <select id="model-select"></select>
+            </div>
+
+            <div class="control-group">
+                <label>Condição Inicial (x₀)</label>
+                <div class="input-row">
+                    <input type="range" id="x0-slider" min="0" max="1" step="0.01">
+                    <input type="number" id="x0-input" step="0.01">
+                </div>
+            </div>
+
+            <div id="sliders-container" class="sliders-container">
+                <!-- Sliders injetados pelo app.js entrarão aqui -->
+            </div>
+            
+            <div class="instructions">
+                <p><strong>Dicas:</strong></p>
+                <ul>
+                    <li>Role a roda do mouse sobre o gráfico para dar Zoom.</li>
+                    <li>Clique e arraste para mover a janela (Pan).</li>
+                    <li>Observe o Efeito Borboleta na série temporal quando λ > 0.</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Área dos Gráficos -->
+        <section class="plots-area">
+            <div class="plot-card">
+                <h2>Diagrama de Teia (Cobweb)</h2>
+                <canvas id="cobweb-canvas"></canvas>
+            </div>
+            <div class="plot-card">
+                <h2>Série Temporal (Órbita Dupla)</h2>
+                <canvas id="timeseries-canvas"></canvas>
+            </div>
+            <div class="plot-card full-width">
+                <h2>Diagrama de Bifurcação 1D</h2>
+                <canvas id="bifurcation-canvas"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <!-- Carrega o aplicativo como módulo ES6 -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
