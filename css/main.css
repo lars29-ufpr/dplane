@@ -166,3 +166,32 @@ canvas {
 .plot-card.full-width canvas {
     height: 400px;
 }
+/* Estilos para os limites ajustáveis dos sliders */
+.slider-bounds-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.slider-bounds-row input[type="range"] {
+    flex: 1;
+}
+
+.bound-input {
+    width: 65px !important;
+    padding: 0.25rem !important;
+    font-size: 0.85rem;
+    text-align: center;
+    background-color: var(--bg-dark);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    -moz-appearance: textfield; /* Remove as setinhas no Firefox */
+}
+
+/* Remove as setinhas numéricas no Chrome/Edge */
+.bound-input::-webkit-outer-spin-button,
+.bound-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
