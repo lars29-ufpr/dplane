@@ -8,9 +8,19 @@
 </head>
 <body>
     <header class="top-bar">
-        <h1>dplane <span class="subtitle">Módulo 1D</span></h1>
+        <h1><span data-i18n="title.main">dplane</span> <span class="subtitle" data-i18n="title.module">Módulo 1D</span></h1>
+        
+        <!-- Seletor de Idiomas -->
+        <div class="lang-selector">
+            <select id="lang-select">
+                <option value="pt">🇧🇷 Português</option>
+                <option value="en">🇺🇸 English</option>
+                <option value="es">🇪🇸 Español</option>
+            </select>
+        </div>
+
         <div class="diagnostic-badge">
-            Expoente de Lyapunov: <span id="lyapunov-value">Calculando...</span>
+            <span data-i18n="label.lyapunov">Expoente de Lyapunov:</span> <span id="lyapunov-value">Calculando...</span>
         </div>
     </header>
 
@@ -18,12 +28,12 @@
         <!-- Painel de Controles Lateral -->
         <aside class="control-panel">
             <div class="control-group">
-                <label for="model-select">Modelo Dinâmico</label>
+                <label for="model-select" data-i18n="label.model">Modelo Dinâmico</label>
                 <select id="model-select"></select>
             </div>
 
             <div class="control-group">
-                <label>Condição Inicial (x₀)</label>
+                <label data-i18n="label.initial_condition">Condição Inicial (x₀)</label>
                 <div class="input-row">
                     <input type="range" id="x0-slider" min="0" max="1" step="0.01">
                     <input type="number" id="x0-input" step="0.01">
@@ -35,11 +45,11 @@
             </div>
             
             <div class="instructions">
-                <p><strong>Dicas:</strong></p>
+                <p><strong data-i18n="tips.title">Dicas:</strong></p>
                 <ul>
-                    <li>Role a roda do mouse sobre o gráfico para dar Zoom.</li>
-                    <li>Clique e arraste para mover a janela (Pan).</li>
-                    <li>Observe o Efeito Borboleta na série temporal quando λ > 0.</li>
+                    <li data-i18n="tips.zoom">Role a roda do mouse sobre o gráfico para dar Zoom.</li>
+                    <li data-i18n="tips.pan">Clique e arraste para mover a janela (Pan).</li>
+                    <li data-i18n="tips.butterfly">Observe o Efeito Borboleta na série temporal quando λ > 0.</li>
                 </ul>
             </div>
         </aside>
@@ -47,21 +57,21 @@
         <!-- Área dos Gráficos -->
         <section class="plots-area">
             <div class="plot-card">
-                <h2>Diagrama de Teia (Cobweb)</h2>
+                <h2 data-i18n="plot.cobweb">Diagrama de Teia (Cobweb)</h2>
                 <canvas id="cobweb-canvas"></canvas>
             </div>
             <div class="plot-card">
-                <h2>Série Temporal (Órbita Dupla)</h2>
+                <h2 data-i18n="plot.timeseries">Série Temporal (Órbita Dupla)</h2>
                 <canvas id="timeseries-canvas"></canvas>
             </div>
             <div class="plot-card full-width">
-                <h2>Diagrama de Bifurcação 1D</h2>
+                <h2 data-i18n="plot.bifurcation">Diagrama de Bifurcação 1D</h2>
                 <canvas id="bifurcation-canvas"></canvas>
             </div>
         </section>
     </main>
 
-    <!-- Carrega o aplicativo como módulo ES6 -->
-    <script type="module" src="js/app.js"></script>
+<!-- Carrega o aplicativo como módulo ES6 -->
+    <script type="module" src="js/app.js?v=2"></script>
 </body>
 </html>

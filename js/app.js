@@ -6,6 +6,7 @@ import { Viewport, setupInteractions } from './viewports.js';
 import { CobwebPlot } from './cobweb-plot.js';
 import { TimeSeriesPlot } from './time-series.js';
 import { BifurcationPlot } from './bifurcation.js';
+import { setLanguage, currentLang, translations } from './i18n.js'; 
 
 class DPlaneApp {
     constructor() {
@@ -16,8 +17,15 @@ class DPlaneApp {
 
         this.initDOM();
         this.initPlots();
+        
+        // Popula a lista antes de carregar
         this.populateModelSelector();
         this.loadModel(MODELS_1D[0].id);
+
+        // CORREÇÃO: A tradução inicial só deve ocorrer APÓS o modelo base estar carregado
+        if (this.langSelect) {
+            setLanguage(this.langSelect.value);
+        }
     }
 
     initDOM() {
@@ -27,13 +35,26 @@ class DPlaneApp {
         this.x0Input = document.getElementById('x0-input');
         this.x0Slider = document.getElementById('x0-slider');
 
+        this.langSelect = document.getElementById('lang-select');
+        this.langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
+        
+        // A primeira tradução foi movida daqui para o final do constructor.
+
+        window.addEventListener('languageChanged', (e) => {
+            this.populateModelSelector();
+            // CORREÇÃO: Só reconstrói os sliders se já existir um modelo carregado
+            if (this.currentModel) {
+                this.buildSliders();
+            }
+        });
+
         this.modelSelect.addEventListener('change', (e) => this.loadModel(e.target.value));
         
         const updateX0 = (val) => {
             this.currentX0 = parseFloat(val);
             this.x0Input.value = this.currentX0.toFixed(3);
             this.x0Slider.value = this.currentX0;
-            this.updateSimulation();
+            this.updateSimulation(false); 
         };
 
         this.x0Slider.addEventListener('input', (e) => updateX0(e.target.value));
@@ -55,13 +76,20 @@ class DPlaneApp {
     }
 
     populateModelSelector() {
+        const currentSelection = this.modelSelect.value;
         this.modelSelect.innerHTML = '';
+        
         MODELS_1D.forEach(model => {
             const option = document.createElement('option');
             option.value = model.id;
-            option.textContent = model.name;
+            const translatedName = translations[currentLang][model.nameKey] || model.id;
+            option.textContent = translatedName;
             this.modelSelect.appendChild(option);
         });
+
+        if (currentSelection) {
+             this.modelSelect.value = currentSelection;
+        }
     }
 
     loadModel(modelId) {
@@ -80,19 +108,22 @@ class DPlaneApp {
         this.cobwebViewport.yMin = this.currentModel.domain.min;
         this.cobwebViewport.yMax = this.currentModel.domain.max;
 
-        if (this.currentModel.params.length > 0) {
-            const mainParam = this.currentModel.params[0];
-            this.bifurcationViewport.xMin = mainParam.min;
-            this.bifurcationViewport.xMax = mainParam.max;
-            this.bifurcationViewport.yMin = this.currentModel.domain.min;
-            this.bifurcationViewport.yMax = this.currentModel.domain.max * 1.2; 
+        const bifConfig = this.currentModel.bifurcationConfig;
+        if (bifConfig) {
+            this.bifurcationViewport.xMin = bifConfig.xMin;
+            this.bifurcationViewport.xMax = bifConfig.xMax;
+            this.bifurcationViewport.yMin = bifConfig.yMin;
+            this.bifurcationViewport.yMax = bifConfig.yMax;
         }
 
         this.buildSliders();
-        this.updateSimulation();
+        this.updateSimulation(true); 
     }
 
     buildSliders() {
+        // CORREÇÃO DE SEGURANÇA: Aborta se o modelo ainda não existir
+        if (!this.currentModel || !this.currentModel.params) return;
+
         this.slidersContainer.innerHTML = '';
         this.currentParams = {};
 
@@ -102,7 +133,8 @@ class DPlaneApp {
             wrapper.className = 'slider-group';
 
             const label = document.createElement('label');
-            label.textContent = `${param.label}: ${param.default.toFixed(2)}`;
+            const translatedLabel = translations[currentLang][param.labelKey] || param.id;
+            label.textContent = `${translatedLabel}: ${param.default.toFixed(2)}`;
 
             const controlRow = document.createElement('div');
             controlRow.className = 'slider-bounds-row';
@@ -112,7 +144,7 @@ class DPlaneApp {
             minInput.className = 'bound-input';
             minInput.value = param.min;
             minInput.step = 'any';
-            minInput.title = "Valor Mínimo";
+            minInput.title = "Mín"; 
 
             const slider = document.createElement('input');
             slider.type = 'range';
@@ -126,13 +158,16 @@ class DPlaneApp {
             maxInput.className = 'bound-input';
             maxInput.value = param.max;
             maxInput.step = 'any';
-            maxInput.title = "Valor Máximo";
+            maxInput.title = "Máx";
+
+            const isBifurcationParam = this.currentModel.bifurcationConfig && 
+                                       this.currentModel.bifurcationConfig.paramX === param.id;
 
             slider.addEventListener('input', (e) => {
                 const val = parseFloat(e.target.value);
                 this.currentParams[param.id] = val;
-                label.textContent = `${param.label}: ${val.toFixed(2)}`;
-                this.updateSimulation();
+                label.textContent = `${translatedLabel}: ${val.toFixed(2)}`;
+                this.updateSimulation(!isBifurcationParam, param.id, val);
             });
 
             minInput.addEventListener('change', (e) => {
@@ -143,9 +178,9 @@ class DPlaneApp {
                         slider.value = newMin;
                         slider.dispatchEvent(new Event('input'));
                     }
-                    if (index === 0) {
+                    if (isBifurcationParam) {
                         this.bifurcationViewport.xMin = newMin;
-                        this.updateSimulation();
+                        this.updateSimulation(true);
                     }
                 }
             });
@@ -158,9 +193,9 @@ class DPlaneApp {
                         slider.value = newMax;
                         slider.dispatchEvent(new Event('input'));
                     }
-                    if (index === 0) {
+                    if (isBifurcationParam) {
                         this.bifurcationViewport.xMax = newMax;
-                        this.updateSimulation();
+                        this.updateSimulation(true);
                     }
                 }
             });
@@ -181,20 +216,25 @@ class DPlaneApp {
         this.cobwebPlot.render(this.compiledFunc, this.currentParams, this.currentX0, fixedPoints, 100);
     }
 
-    updateBifurcationOnly() {
-        if (!this.compiledFunc || !this.currentModel || this.currentModel.params.length === 0) return;
-        const mainParam = this.currentModel.params[0];
+   updateBifurcationOnly() {
+        if (!this.compiledFunc || !this.currentModel) return;
+        
+        if (!this.currentModel.bifurcationConfig) {
+            this.bifurcationViewport.clear(); 
+            return;
+        }
+
+        const paramToSweep = this.currentModel.bifurcationConfig.paramX;
         this.bifurcationPlot.render(
             this.compiledFunc,
             this.currentParams,
-            mainParam.id,
+            paramToSweep,
             this.currentX0,
-            200, 
-            200  
+            2000, // <-- CORREÇÃO: Aquecimento (burn-in) aumentado de 200 para 2000
+            200   // Quantidade de pontos desenhados por pixel vertical
         );
     }
-
-    updateSimulation() {
+    updateSimulation(fullReRender = true, changedParamId = null, changedParamValue = null) {
         if (!this.compiledFunc || !this.currentModel) return;
 
         const lyapunov = calculateLyapunov(this.compiledFunc, this.currentX0, this.currentParams);
@@ -215,7 +255,11 @@ class DPlaneApp {
             this.currentModel.domain.max
         );
         
-        this.updateBifurcationOnly();
+        if (fullReRender) {
+            this.updateBifurcationOnly();
+        } else if (changedParamId && this.currentModel.bifurcationConfig && this.currentModel.bifurcationConfig.paramX === changedParamId) {
+            this.bifurcationPlot.drawParamIndicator(changedParamValue);
+        }
     }
 }
 
