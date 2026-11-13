@@ -14,7 +14,6 @@ export const translations = {
         "plot.cobweb": "Diagrama de Teia (Cobweb)",
         "plot.timeseries": "Série Temporal (Órbita Dupla)",
         "plot.bifurcation": "Diagrama de Bifurcação 1D",
-        
         "model.blank.name": "Modelo em Branco",
         "model.blank.desc": "Crie seu próprio modelo definindo a equação e os parâmetros.",
         "model.logistic.name": "Logístico Canônico",
@@ -36,7 +35,37 @@ export const translations = {
         "model.fishery.desc": "Modelo de colheita. Esforço excessivo leva a população ao colapso.",
         "model.fishery.param.a": "Meia-saturação (a)",
         "model.fishery.param.b": "Máx Recrutamento (b)",
-        "model.fishery.param.e": "Esforço de Pesca (E)"
+        "model.fishery.param.e": "Esforço de Pesca (E)",
+        // --- Chaves do Módulo 2D ---
+        "title.module2d": "Módulo 2D (Sandbox)",
+        "label.iterations": "Iterações:",
+        "label.initial_condition_x": "Condição Inicial (x₀)",
+        "label.initial_condition_y": "Condição Inicial (y₀)",
+        "label.model2d": "Modelo Dinâmico 2D",
+        "plot.phaseplane": "Plano de Fases (Phase Plane)",
+        "plot.timeseries2d": "Série Temporal (X e Y vs n)",
+"plot.phaseplane": "Plano de Fases (Phase Plane)",
+        "plot.timeseries2d": "Série Temporal (X e Y vs n)", // <--- COLOQUE A VÍRGULA AQUI
+
+        // --- NOVOS MODELOS 2D ---
+        "model.tinkerbell.name": "Mapa Tinkerbell",
+        "model.tinkerbell.param.a": "Param a",
+        "model.tinkerbell.param.b": "Param b",
+        "model.tinkerbell.param.c": "Param c",
+        "model.tinkerbell.param.d": "Param d",
+        
+        "model.standard.name": "Mapa Padrão (Chirikov)",
+        "model.standard.param.k": "Força (K)",
+        
+        "model.beddington.name": "Hospedeiro-Parasitoide",
+        "model.beddington.param.r": "Crescimento H (r)",
+        "model.beddington.param.k": "Suporte H (K)",
+        "model.beddington.param.a": "Eficiência Busca (a)",
+        "model.beddington.param.c": "Conversão (c)",
+        
+        "model.cournot.name": "Duopólio de Cournot",
+        "model.cournot.param.v": "Velocidade Ajuste (v)",
+        "model.cournot.param.c": "Custo Marginal (c)"
     },
     en: {
         "title.main": "dplane",
@@ -73,7 +102,35 @@ export const translations = {
         "model.fishery.desc": "Harvesting model. Excessive effort leads to population collapse.",
         "model.fishery.param.a": "Half-saturation (a)",
         "model.fishery.param.b": "Max Recruitment (b)",
-        "model.fishery.param.e": "Fishing Effort (E)"
+        "model.fishery.param.e": "Fishing Effort (E)",
+
+        // --- 2D Module Keys ---
+        "title.module2d": "2D Module (Sandbox)",
+        "label.iterations": "Iterations:",
+        "label.initial_condition_x": "Initial Condition (x₀)",
+        "label.initial_condition_y": "Initial Condition (y₀)",
+        "label.model2d": "2D Dynamical Model",
+        "plot.phaseplane": "Phase Plane",
+        "plot.timeseries2d": "Time Series (X and Y vs n)",
+// --- NEW 2D MODELS ---
+        "model.tinkerbell.name": "Tinkerbell Map",
+        "model.tinkerbell.param.a": "Param a",
+        "model.tinkerbell.param.b": "Param b",
+        "model.tinkerbell.param.c": "Param c",
+        "model.tinkerbell.param.d": "Param d",
+        
+        "model.standard.name": "Standard Map (Chirikov)",
+        "model.standard.param.k": "Force (K)",
+        
+        "model.beddington.name": "Host-Parasitoid (BFL)",
+        "model.beddington.param.r": "Host Growth (r)",
+        "model.beddington.param.k": "Carrying Cap (K)",
+        "model.beddington.param.a": "Search Effic. (a)",
+        "model.beddington.param.c": "Conversion (c)",
+        
+        "model.cournot.name": "Cournot Duopoly",
+        "model.cournot.param.v": "Adjustment Speed (v)",
+        "model.cournot.param.c": "Marginal Cost (c)"
     },
     es: {
         "title.main": "dplane",
@@ -110,7 +167,35 @@ export const translations = {
         "model.fishery.desc": "Modelo de captura. El esfuerzo excesivo lleva al colapso de la población.",
         "model.fishery.param.a": "Semi-saturación (a)",
         "model.fishery.param.b": "Reclutamiento Máx (b)",
-        "model.fishery.param.e": "Esfuerzo de Pesca (E)"
+        "model.fishery.param.e": "Esfuerzo de Pesca (E)",
+
+        // --- Claves del Módulo 2D ---
+        "title.module2d": "Módulo 2D (Sandbox)",
+        "label.iterations": "Iteraciones:",
+        "label.initial_condition_x": "Condición Inicial (x₀)",
+        "label.initial_condition_y": "Condición Inicial (y₀)",
+        "label.model2d": "Modelo Dinámico 2D",
+        "plot.phaseplane": "Plano de Fases (Phase Plane)",
+        "plot.timeseries2d": "Serie Temporal (X e Y vs n)",
+// --- NUEVOS MODELOS 2D ---
+        "model.tinkerbell.name": "Mapa Tinkerbell",
+        "model.tinkerbell.param.a": "Parám a",
+        "model.tinkerbell.param.b": "Parám b",
+        "model.tinkerbell.param.c": "Parám c",
+        "model.tinkerbell.param.d": "Parám d",
+        
+        "model.standard.name": "Mapa Estándar (Chirikov)",
+        "model.standard.param.k": "Fuerza (K)",
+        
+        "model.beddington.name": "Huésped-Parasitoide",
+        "model.beddington.param.r": "Crecimiento H (r)",
+        "model.beddington.param.k": "Capacidad Carga (K)",
+        "model.beddington.param.a": "Eficacia Búsqueda (a)",
+        "model.beddington.param.c": "Conversión (c)",
+        
+        "model.cournot.name": "Duopolio de Cournot",
+        "model.cournot.param.v": "Velocidad Ajuste (v)",
+        "model.cournot.param.c": "Coste Marginal (c)"
     }
 };
 

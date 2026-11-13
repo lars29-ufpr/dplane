@@ -1,5 +1,6 @@
 // js/app-2d.js
 
+import { setLanguage, currentLang, translations } from './i18n.js';
 import { MODELS_2D } from './models-2d.js';
 import { Viewport, setupInteractions } from './viewports.js';
 import { PhasePlanePlot } from './phase-plane.js';
@@ -17,9 +18,26 @@ class DPlane2DApp {
         this.initPlots();
         this.populateModelSelector();
         this.loadModel(MODELS_2D[0].id);
-    }
+// --- CÓDIGO NOVO DE IDIOMA ---
+        if (this.langSelect) {
+            setLanguage(this.langSelect.value);
+        }   
+ }
 
     initDOM() {
+// --- CÓDIGO NOVO DE IDIOMA ---
+        this.langSelect = document.getElementById('lang-select');
+        if (this.langSelect) {
+            this.langSelect.addEventListener('change', (e) => setLanguage(e.target.value));
+        }
+
+        window.addEventListener('languageChanged', (e) => {
+            this.populateModelSelector();
+            if (this.currentModel) {
+                this.buildSliders();
+            }
+        });
+        // ------------------------------
         this.modelSelect = document.getElementById('model-select');
         this.slidersContainer = document.getElementById('sliders-container');
         this.x0Slider = document.getElementById('x0-slider');
@@ -27,7 +45,18 @@ class DPlane2DApp {
         this.y0Slider = document.getElementById('y0-slider');
         this.y0Input = document.getElementById('y0-input');
         this.iterBadge = document.getElementById('iterations-value');
+this.y0Slider = document.getElementById('y0-slider');
+        this.y0Input = document.getElementById('y0-input');
+        this.iterBadge = document.getElementById('iterations-value');
 
+        // --- CÓDIGO NOVO: Controle do Slider de Iterações ---
+        this.iterSlider = document.getElementById('iterations-slider');
+        if (this.iterSlider) {
+            this.iterSlider.addEventListener('input', (e) => {
+                this.iterations = parseInt(e.target.value, 10);
+                this.updateSimulation(); // Redesenha o gráfico em tempo real ao arrastar
+            });
+        }
         this.modelSelect.addEventListener('change', (e) => this.loadModel(e.target.value));
 
         const updateInitialConditions = () => {

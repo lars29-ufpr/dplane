@@ -7,11 +7,20 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <header class="top-bar">
-        <h1><span data-i18n="title.main">dplane</span> <span class="subtitle" data-i18n="title.module">Módulo 1D</span></h1>
+   <header class="top-bar">
+        <h1>
+            <span data-i18n="title.main">dplane</span> 
+            <span class="subtitle" data-i18n="title.module">Módulo 1D</span>
+        </h1>
+        
+        <!-- Navegação entre os módulos -->
+        <nav class="module-nav" style="margin-left: 1rem; display: flex; gap: 10px;">
+            <a href="index.html" class="nav-btn active" style="color: var(--accent); text-decoration: none; padding: 5px 10px; border: 1px solid var(--accent); border-radius: 4px; background: rgba(56, 189, 248, 0.1);">1D</a>
+            <a href="2d.html" class="nav-btn" style="color: var(--text-muted); text-decoration: none; padding: 5px 10px; border: 1px solid var(--border); border-radius: 4px;">2D</a>
+        </nav>
         
         <!-- Seletor de Idiomas -->
-        <div class="lang-selector">
+        <div class="lang-selector" style="margin-left: auto; margin-right: 15px;">
             <select id="lang-select">
                 <option value="pt">🇧🇷 Português</option>
                 <option value="en">🇺🇸 English</option>

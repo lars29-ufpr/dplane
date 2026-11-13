@@ -48,19 +48,20 @@ export class PhasePlanePlot {
         ctx.textBaseline = 'bottom';
         ctx.fillText(vp.yMin.toFixed(2), yAxisX + xOffset, vp.height - 10);
         // --- FIM DA NOVA LÓGICA DE TEXTO ---
-
-        let x = x0;
+let x = x0;
         let y = y0;
         let currentIter = 0;
 
         ctx.beginPath();
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)'; 
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';  
         ctx.lineWidth = 1;
         ctx.moveTo(vp.toScreenX(x), vp.toScreenY(y));
 
-        for (let i = 0; i < 100; i++) {
+        // NOVA LÓGICA: O transiente respeita o slider, com limite máximo de 100
+        const transientSteps = Math.min(100, iterations);
+        for (let i = 0; i < transientSteps; i++) {
             const next = stepFunc(x, y, params);
-            x = next.x; 
+            x = next.x;  
             y = next.y;
             if (!isFinite(x) || !isFinite(y)) break;
             ctx.lineTo(vp.toScreenX(x), vp.toScreenY(y));

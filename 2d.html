@@ -8,23 +8,44 @@
 </head>
 <body>
     <header class="top-bar">
-        <h1><span>dplane</span> <span class="subtitle">Módulo 2D (Sandbox)</span></h1>
+        <h1>
+            <span data-i18n="title.main">dplane</span> 
+            <span class="subtitle" data-i18n="title.module2d">Módulo 2D (Sandbox)</span>
+        </h1>
         
-        <div class="diagnostic-badge">
-            <span>Iterações:</span> <span id="iterations-value">Desenhando...</span>
+        <!-- Navegação entre os módulos -->
+        <nav class="module-nav" style="margin-left: 1rem; display: flex; gap: 10px;">
+            <a href="index.html" class="nav-btn" style="color: var(--text-muted); text-decoration: none; padding: 5px 10px; border: 1px solid var(--border); border-radius: 4px;">1D</a>
+            <a href="2d.html" class="nav-btn active" style="color: var(--accent); text-decoration: none; padding: 5px 10px; border: 1px solid var(--accent); border-radius: 4px; background: rgba(56, 189, 248, 0.1);">2D</a>
+        </nav>
+        
+        <!-- Seletor de Idiomas (Importado da lógica do 1D) -->
+        <div class="lang-selector" style="margin-left: auto; margin-right: 15px;">
+            <select id="lang-select">
+                <option value="pt">🇧🇷 Português</option>
+                <option value="en">🇺🇸 English</option>
+                <option value="es">🇪🇸 Español</option>
+            </select>
+        </div>
+<div class="diagnostic-badge" style="display: flex; align-items: center; gap: 15px;">
+            <div style="min-width: 120px; text-align: right;">
+                <span data-i18n="label.iterations">Iterações:</span> 
+                <strong id="iterations-value">50.000</strong>
+            </div>
+            <input type="range" id="iterations-slider" min="100" max="150000" step="500" value="50000" 
+                   style="width: 150px; cursor: pointer;" title="Arraste para ver a evolução da órbita">
         </div>
     </header>
 
     <main class="dashboard">
-        <!-- Painel de Controles Lateral -->
         <aside class="control-panel">
             <div class="control-group">
-                <label>Modelo Dinâmico 2D</label>
+                <label data-i18n="label.model2d">Modelo Dinâmico 2D</label>
                 <select id="model-select"></select>
             </div>
 
             <div class="control-group">
-                <label>Condição Inicial (x₀)</label>
+                <label data-i18n="label.initial_condition_x">Condição Inicial (x₀)</label>
                 <div class="input-row">
                     <input type="range" id="x0-slider" min="-20" max="20" step="0.1">
                     <input type="number" id="x0-input" step="0.1">
@@ -32,7 +53,7 @@
             </div>
 
             <div class="control-group">
-                <label>Condição Inicial (y₀)</label>
+                <label data-i18n="label.initial_condition_y">Condição Inicial (y₀)</label>
                 <div class="input-row">
                     <input type="range" id="y0-slider" min="-20" max="20" step="0.1">
                     <input type="number" id="y0-input" step="0.1">
@@ -40,29 +61,23 @@
             </div>
 
             <div id="sliders-container" class="sliders-container">
-                <!-- Sliders dos parâmetros 2D entrarão aqui -->
+                <!-- Sliders injetados aqui -->
             </div>
         </aside>
-<!-- Área dos Gráficos -->
-        <!-- Área dos Gráficos -->
+
         <section class="plots-area" style="grid-template-columns: 1fr;">
-            
             <div class="plot-card full-width" style="height: 60vh; display: flex; flex-direction: column;">
-                <h2>Plano de Fases (Phase Plane)</h2>
-                <!-- Adicionado flex: 1 para forçar o canvas a preencher todo o espaço vazio -->
+                <h2 data-i18n="plot.phaseplane">Plano de Fases (Phase Plane)</h2>
                 <canvas id="phase-plane-canvas" style="flex: 1; width: 100%;"></canvas>
             </div>
             
             <div class="plot-card full-width" style="height: 30vh; display: flex; flex-direction: column;">
-                <h2>Série Temporal (X e Y vs n)</h2>
-                <!-- Adicionado flex: 1 aqui também -->
+                <h2 data-i18n="plot.timeseries2d">Série Temporal (X e Y vs n)</h2>
                 <canvas id="timeseries-2d-canvas" style="flex: 1; width: 100%;"></canvas>
             </div>
-            
         </section>
     </main>
 
-    <!-- O motor do 2D que vamos criar a seguir -->
     <script type="module" src="js/app-2d.js"></script>
 </body>
 </html>
