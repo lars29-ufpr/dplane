@@ -36,6 +36,7 @@ export const translations = {
         "model.fishery.param.a": "Meia-saturação (a)",
         "model.fishery.param.b": "Máx Recrutamento (b)",
         "model.fishery.param.e": "Esforço de Pesca (E)",
+
         // --- Chaves do Módulo 2D ---
         "title.module2d": "Módulo 2D (Sandbox)",
         "label.iterations": "Iterações:",
@@ -44,26 +45,34 @@ export const translations = {
         "label.model2d": "Modelo Dinâmico 2D",
         "plot.phaseplane": "Plano de Fases (Phase Plane)",
         "plot.timeseries2d": "Série Temporal (X e Y vs n)",
-"plot.phaseplane": "Plano de Fases (Phase Plane)",
-        "plot.timeseries2d": "Série Temporal (X e Y vs n)", // <--- COLOQUE A VÍRGULA AQUI
 
-        // --- NOVOS MODELOS 2D ---
+        // --- Modelos 2D ---
+        "model.gumowski.name": "Mapa de Gumowski-Mira (CERN)",
+        "model.gumowski.param.mu": "Parâmetro (μ)",
+        "model.gumowski.param.a": "Dissipação (a)",
+        "model.gumowski.param.b": "Não-linearidade (b)",
+
+        "model.ikeda.name": "Mapa de Ikeda (Ótica Não-Linear)",
+        "model.ikeda.param.u": "Dissipação (u)",
+
+        "model.gingerbread.name": "Homem de Gengibre (Caos Geométrico)",
+
         "model.tinkerbell.name": "Mapa Tinkerbell",
-        "model.tinkerbell.param.a": "Param a",
-        "model.tinkerbell.param.b": "Param b",
-        "model.tinkerbell.param.c": "Param c",
-        "model.tinkerbell.param.d": "Param d",
-        
+        "model.tinkerbell.param.a": "Parâmetro (a)",
+        "model.tinkerbell.param.b": "Parâmetro (b)",
+        "model.tinkerbell.param.c": "Parâmetro (c)",
+        "model.tinkerbell.param.d": "Parâmetro (d)",
+
         "model.standard.name": "Mapa Padrão (Chirikov)",
         "model.standard.param.k": "Força (K)",
-        
-        "model.beddington.name": "Hospedeiro-Parasitoide",
+
+        "model.beddington.name": "Hospedeiro-Parasitoide (Ecologia)",
         "model.beddington.param.r": "Crescimento H (r)",
         "model.beddington.param.k": "Suporte H (K)",
         "model.beddington.param.a": "Eficiência Busca (a)",
         "model.beddington.param.c": "Conversão (c)",
-        
-        "model.cournot.name": "Duopólio de Cournot",
+
+        "model.cournot.name": "Duopólio de Cournot (Economia)",
         "model.cournot.param.v": "Velocidade Ajuste (v)",
         "model.cournot.param.c": "Custo Marginal (c)"
     },
@@ -80,7 +89,6 @@ export const translations = {
         "plot.cobweb": "Cobweb Plot",
         "plot.timeseries": "Time Series (Dual Orbit)",
         "plot.bifurcation": "1D Bifurcation Diagram",
-
         "model.blank.name": "Blank Model",
         "model.blank.desc": "Create your own model by defining the equation and parameters.",
         "model.logistic.name": "Canonical Logistic",
@@ -112,23 +120,34 @@ export const translations = {
         "label.model2d": "2D Dynamical Model",
         "plot.phaseplane": "Phase Plane",
         "plot.timeseries2d": "Time Series (X and Y vs n)",
-// --- NEW 2D MODELS ---
+
+        // --- 2D Models ---
+        "model.gumowski.name": "Gumowski-Mira Map (CERN)",
+        "model.gumowski.param.mu": "Parameter (μ)",
+        "model.gumowski.param.a": "Dissipation (a)",
+        "model.gumowski.param.b": "Nonlinearity (b)",
+
+        "model.ikeda.name": "Ikeda Map (Nonlinear Optics)",
+        "model.ikeda.param.u": "Dissipation (u)",
+
+        "model.gingerbread.name": "Gingerbreadman (Geometric Chaos)",
+
         "model.tinkerbell.name": "Tinkerbell Map",
-        "model.tinkerbell.param.a": "Param a",
-        "model.tinkerbell.param.b": "Param b",
-        "model.tinkerbell.param.c": "Param c",
-        "model.tinkerbell.param.d": "Param d",
-        
+        "model.tinkerbell.param.a": "Parameter (a)",
+        "model.tinkerbell.param.b": "Parameter (b)",
+        "model.tinkerbell.param.c": "Parameter (c)",
+        "model.tinkerbell.param.d": "Parameter (d)",
+
         "model.standard.name": "Standard Map (Chirikov)",
         "model.standard.param.k": "Force (K)",
-        
-        "model.beddington.name": "Host-Parasitoid (BFL)",
+
+        "model.beddington.name": "Host-Parasitoid (BFL Ecology)",
         "model.beddington.param.r": "Host Growth (r)",
         "model.beddington.param.k": "Carrying Cap (K)",
         "model.beddington.param.a": "Search Effic. (a)",
         "model.beddington.param.c": "Conversion (c)",
-        
-        "model.cournot.name": "Cournot Duopoly",
+
+        "model.cournot.name": "Cournot Duopoly (Economics)",
         "model.cournot.param.v": "Adjustment Speed (v)",
         "model.cournot.param.c": "Marginal Cost (c)"
     },
@@ -145,7 +164,6 @@ export const translations = {
         "plot.cobweb": "Diagrama de Telaraña",
         "plot.timeseries": "Serie Temporal (Órbita Doble)",
         "plot.bifurcation": "Diagrama de Bifurcación 1D",
-
         "model.blank.name": "Modelo en Blanco",
         "model.blank.desc": "Crea tu propio modelo definiendo la ecuación y los parámetros.",
         "model.logistic.name": "Logístico Canónico",
@@ -177,23 +195,34 @@ export const translations = {
         "label.model2d": "Modelo Dinámico 2D",
         "plot.phaseplane": "Plano de Fases (Phase Plane)",
         "plot.timeseries2d": "Serie Temporal (X e Y vs n)",
-// --- NUEVOS MODELOS 2D ---
+
+        // --- Modelos 2D ---
+        "model.gumowski.name": "Mapa de Gumowski-Mira (CERN)",
+        "model.gumowski.param.mu": "Parámetro (μ)",
+        "model.gumowski.param.a": "Disipación (a)",
+        "model.gumowski.param.b": "No linealidad (b)",
+
+        "model.ikeda.name": "Mapa de Ikeda (Óptica No Lineal)",
+        "model.ikeda.param.u": "Disipación (u)",
+
+        "model.gingerbread.name": "Hombre de Jengibre (Caos Geométrico)",
+
         "model.tinkerbell.name": "Mapa Tinkerbell",
-        "model.tinkerbell.param.a": "Parám a",
-        "model.tinkerbell.param.b": "Parám b",
-        "model.tinkerbell.param.c": "Parám c",
-        "model.tinkerbell.param.d": "Parám d",
-        
+        "model.tinkerbell.param.a": "Parámetro (a)",
+        "model.tinkerbell.param.b": "Parámetro (b)",
+        "model.tinkerbell.param.c": "Parámetro (c)",
+        "model.tinkerbell.param.d": "Parámetro (d)",
+
         "model.standard.name": "Mapa Estándar (Chirikov)",
         "model.standard.param.k": "Fuerza (K)",
-        
-        "model.beddington.name": "Huésped-Parasitoide",
+
+        "model.beddington.name": "Huésped-Parasitoide (Ecología)",
         "model.beddington.param.r": "Crecimiento H (r)",
         "model.beddington.param.k": "Capacidad Carga (K)",
         "model.beddington.param.a": "Eficacia Búsqueda (a)",
         "model.beddington.param.c": "Conversión (c)",
-        
-        "model.cournot.name": "Duopolio de Cournot",
+
+        "model.cournot.name": "Duopolio de Cournot (Economía)",
         "model.cournot.param.v": "Velocidad Ajuste (v)",
         "model.cournot.param.c": "Coste Marginal (c)"
     }
@@ -206,7 +235,6 @@ export function setLanguage(lang) {
     currentLang = lang;
 
     const elements = document.querySelectorAll('[data-i18n]');
-    
     elements.forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang][key]) {
